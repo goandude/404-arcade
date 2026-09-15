@@ -1,0 +1,414 @@
+[
+  {
+    "start": 15.16,
+    "end": 19.96,
+    "text": " Green goblins glowing in the dark",
+    "words": [
+      {
+        "start": 15.16,
+        "end": 16.56,
+        "word": " Green"
+      },
+      {
+        "start": 16.56,
+        "end": 17.34,
+        "word": " goblins"
+      },
+      {
+        "start": 17.34,
+        "end": 18.04,
+        "word": " glowing"
+      },
+      {
+        "start": 18.04,
+        "end": 19.0,
+        "word": " in"
+      },
+      {
+        "start": 19.0,
+        "end": 19.42,
+        "word": " the"
+      },
+      {
+        "start": 19.42,
+        "end": 19.96,
+        "word": " dark"
+      }
+    ]
+  },
+  {
+    "start": 19.96,
+    "end": 23.74,
+    "text": " Descendants slowly row by row",
+    "words": [
+      {
+        "start": 19.96,
+        "end": 21.3,
+        "word": " Descendants"
+      },
+      {
+        "start": 21.3,
+        "end": 21.9,
+        "word": " slowly"
+      },
+      {
+        "start": 21.9,
+        "end": 21.92,
+        "word": " row"
+      },
+      {
+        "start": 21.92,
+        "end": 23.22,
+        "word": " by"
+      },
+      {
+        "start": 23.22,
+        "end": 23.74,
+        "word": " row"
+      }
+    ]
+  },
+  {
+    "start": 23.74,
+    "end": 27.54,
+    "text": " They're marching down to the spark",
+    "words": [
+      {
+        "start": 23.74,
+        "end": 24.52,
+        "word": " They're"
+      },
+      {
+        "start": 24.52,
+        "end": 24.88,
+        "word": " marching"
+      },
+      {
+        "start": 24.88,
+        "end": 25.94,
+        "word": " down"
+      },
+      {
+        "start": 25.94,
+        "end": 26.34,
+        "word": " to"
+      },
+      {
+        "start": 26.34,
+        "end": 27.04,
+        "word": " the"
+      },
+      {
+        "start": 27.04,
+        "end": 27.54,
+        "word": " spark"
+      }
+    ]
+  },
+  {
+    "start": 27.54,
+    "end": 31.66,
+    "text": " Nowhere to hide, nowhere to go",
+    "words": [
+      {
+        "start": 27.54,
+        "end": 28.9,
+        "word": " Nowhere"
+      },
+      {
+        "start": 28.9,
+        "end": 29.24,
+        "word": " to"
+      },
+      {
+        "start": 29.24,
+        "end": 29.68,
+        "word": " hide,"
+      },
+      {
+        "start": 29.92,
+        "end": 30.26,
+        "word": " nowhere"
+      },
+      {
+        "start": 30.26,
+        "end": 30.26,
+        "word": " to"
+      },
+      {
+        "start": 30.26,
+        "end": 31.66,
+        "word": " go"
+      }
+    ]
+  },
+  {
+    "start": 31.66,
+    "end": 35.52,
+    "text": " The bunkers cracking at the scene",
+    "words": [
+      {
+        "start": 31.66,
+        "end": 32.4,
+        "word": " The"
+      },
+      {
+        "start": 32.4,
+        "end": 33.08,
+        "word": " bunkers"
+      },
+      {
+        "start": 33.08,
+        "end": 33.82,
+        "word": " cracking"
+      },
+      {
+        "start": 33.82,
+        "end": 34.66,
+        "word": " at"
+      },
+      {
+        "start": 34.66,
+        "end": 34.9,
+        "word": " the"
+      },
+      {
+        "start": 34.9,
+        "end": 35.52,
+        "word": " scene"
+      }
+    ]
+  },
+  {
+    "start": 35.52,
+    "end": 39.64,
+    "text": " Another shot into the night",
+    "words": [
+      {
+        "start": 35.52,
+        "end": 36.66,
+        "word": " Another"
+      },
+      {
+        "start": 36.66,
+        "end": 37.4,
+        "word": " shot"
+      },
+      {
+        "start": 37.4,
+        "end": 38.18,
+        "word": " into"
+      },
+      {
+        "start": 38.18,
+        "end": 39.04,
+        "word": " the"
+      },
+      {
+        "start": 39.04,
+        "end": 39.64,
+        "word": " night"
+      }
+    ]
+  },
+  {
+    "start": 39.64,
+    "end": 43.4,
+    "text": " Caught up inside an arcade dream",
+    "words": [
+      {
+        "start": 39.64,
+        "end": 40.42,
+        "word": " Caught"
+      },
+      {
+        "start": 40.42,
+        "end": 40.64,
+        "word": " up"
+      },
+      {
+        "start": 40.64,
+        "end": 41.26,
+        "word": " inside"
+      },
+      {
+        "start": 41.26,
+        "end": 42.04,
+        "word": " an"
+      },
+      {
+        "start": 42.04,
+        "end": 42.64,
+        "word": " arcade"
+      },
+      {
+        "start": 42.64,
+        "end": 43.4,
+        "word": " dream"
+      }
+    ]
+  },
+  {
+    "start": 43.4,
+    "end": 47.68,
+    "text": " We're firing lasers in the light",
+    "words": [
+      {
+        "start": 43.4,
+        "end": 44.2,
+        "word": " We're"
+      },
+      {
+        "start": 44.2,
+        "end": 44.8,
+        "word": " firing"
+      },
+      {
+        "start": 44.8,
+        "end": 45.56,
+        "word": " lasers"
+      },
+      {
+        "start": 45.56,
+        "end": 46.54,
+        "word": " in"
+      },
+      {
+        "start": 46.54,
+        "end": 46.9,
+        "word": " the"
+      },
+      {
+        "start": 46.9,
+        "end": 47.68,
+        "word": " light"
+      }
+    ]
+  },
+  {
+    "start": 48.980000000000004,
+    "end": 53.22,
+    "text": " It keeps marching from the sky",
+    "words": [
+      {
+        "start": 48.980000000000004,
+        "end": 49.86,
+        "word": " It"
+      },
+      {
+        "start": 49.86,
+        "end": 50.4,
+        "word": " keeps"
+      },
+      {
+        "start": 50.4,
+        "end": 51.36,
+        "word": " marching"
+      },
+      {
+        "start": 51.36,
+        "end": 52.3,
+        "word": " from"
+      },
+      {
+        "start": 52.3,
+        "end": 52.66,
+        "word": " the"
+      },
+      {
+        "start": 52.66,
+        "end": 53.22,
+        "word": " sky"
+      }
+    ]
+  },
+  {
+    "start": 57.46,
+    "end": 76.86,
+    "text": " Invaders right before our eyes",
+    "words": [
+      {
+        "start": 57.46,
+        "end": 58.86,
+        "word": " Invaders"
+      },
+      {
+        "start": 58.86,
+        "end": 59.16,
+        "word": " right"
+      },
+      {
+        "start": 59.16,
+        "end": 75.72,
+        "word": " before"
+      },
+      {
+        "start": 75.72,
+        "end": 76.06,
+        "word": " our"
+      },
+      {
+        "start": 76.06,
+        "end": 76.86,
+        "word": " eyes"
+      }
+    ]
+  },
+  {
+    "start": 86.86,
+    "end": 92.48,
+    "text": " Mm-hmm, I hate it just right before our eyes",
+    "words": [
+      {
+        "start": 86.86,
+        "end": 88.1,
+        "word": " Mm"
+      },
+      {
+        "start": 88.1,
+        "end": 88.52,
+        "word": "-hmm,"
+      },
+      {
+        "start": 88.52,
+        "end": 88.52,
+        "word": " I"
+      },
+      {
+        "start": 88.52,
+        "end": 89.3,
+        "word": " hate"
+      },
+      {
+        "start": 89.3,
+        "end": 89.44,
+        "word": " it"
+      },
+      {
+        "start": 89.44,
+        "end": 90.06,
+        "word": " just"
+      },
+      {
+        "start": 90.06,
+        "end": 90.44,
+        "word": " right"
+      },
+      {
+        "start": 90.44,
+        "end": 91.28,
+        "word": " before"
+      },
+      {
+        "start": 91.28,
+        "end": 91.72,
+        "word": " our"
+      },
+      {
+        "start": 91.72,
+        "end": 92.48,
+        "word": " eyes"
+      }
+    ]
+  }
+]

@@ -1,0 +1,9 @@
+* text=auto eol=lf
+
+# Minified build output: exclude from diffs and GitHub language stats
+*.bundle.js -diff linguist-generated
+afterburn/bundle.js -diff linguist-generated
+Battle Royale/bundle.js -diff linguist-generated
+
+*.mp3 binary
+*.png binary

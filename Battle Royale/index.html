@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Battle Royale - Zero Build</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="bundle.js" defer></script>
+</head>
+<body>
+  <!-- 3D Canvas -->
+  <canvas id="view"></canvas>
+
+  <!-- Storm Vignette Warning -->
+  <div id="storm-vignette"></div>
+
+  <!-- In-Game HUD -->
+  <div id="hud">
+    <!-- Top Compass -->
+    <div id="compass">
+      <div id="compass-tape">
+        <span>N</span><span>·</span><span>15</span><span>·</span><span>30</span><span>·</span><span>NE</span><span>·</span><span>60</span><span>·</span><span>75</span><span>·</span><span>E</span><span>·</span><span>105</span><span>·</span><span>120</span><span>·</span><span>SE</span><span>·</span><span>150</span><span>·</span><span>165</span><span>·</span><span>S</span><span>·</span><span>195</span><span>·</span><span>210</span><span>·</span><span>SW</span><span>·</span><span>240</span><span>·</span><span>255</span><span>·</span><span>W</span><span>·</span><span>285</span><span>·</span><span>300</span><span>·</span><span>NW</span><span>·</span><span>330</span><span>·</span><span>345</span><span>·</span><span>N</span>
+      </div>
+      <div id="compass-marker">▼</div>
+    </div>
+
+    <!-- Top Right: Minimap & Match Info -->
+    <div id="top-right-panel">
+      <div id="match-stats">
+        <div class="stat-badge"><span class="badge-icon">👥</span> ALIVE: <b id="stat-alive">10</b></div>
+        <div class="stat-badge"><span class="badge-icon">🎯</span> ELIMS: <b id="stat-elims">0</b></div>
+      </div>
+      <div id="storm-timer-box">
+        <span id="storm-phase-label">STORM EYE CLOSES IN</span>
+        <b id="storm-timer">0:45</b>
+      </div>
+      <div id="minimap-container">
+        <canvas id="minimap" width="120" height="120"></canvas>
+      </div>
+    </div>
+
+    <!-- Center Reticle & Prompts -->
+    <div id="crosshair">
+      <div class="ch-line top"></div>
+      <div class="ch-line bottom"></div>
+      <div class="ch-line left"></div>
+      <div class="ch-line right"></div>
+      <div id="hitmarker">✕</div>
+    </div>
+
+    <div id="interaction-prompt"></div>
+    <div id="glider-prompt">SPACE TO DEPLOY GLIDER</div>
+
+    <!-- Consumable Usage Bar -->
+    <div id="action-bar-container">
+      <div id="action-bar-label">USING SHIELD POTION...</div>
+      <div id="action-bar-track">
+        <div id="action-bar-fill"></div>
+      </div>
+    </div>
+
+    <!-- Damage Numbers Overlay -->
+    <div id="damage-container"></div>
+
+    <!-- Bottom Left: Shield & Health -->
+    <div id="vital-bars">
+      <div class="vital-row shield-row">
+        <span class="vital-icon">🛡️</span>
+        <div class="bar-track">
+          <div id="shield-fill" class="bar-fill"></div>
+        </div>
+        <span id="shield-text" class="vital-val">100</span>
+      </div>
+      <div class="vital-row health-row">
+        <span class="vital-icon">💚</span>
+        <div class="bar-track">
+          <div id="health-fill" class="bar-fill"></div>
+        </div>
+        <span id="health-text" class="vital-val">100</span>
+      </div>
+    </div>
+
+    <!-- Bottom Right: Weapon Hotbar (Slots 1-5) -->
+    <div id="hotbar">
+      <div class="slot active" data-slot="0">
+        <span class="slot-num">1</span>
+        <span class="slot-icon">⛏️</span>
+        <span class="slot-ammo">∞</span>
+      </div>
+      <div class="slot" data-slot="1">
+        <span class="slot-num">2</span>
+        <span class="slot-icon">🔫</span>
+        <span id="ar-ammo" class="slot-ammo">30</span>
+      </div>
+      <div class="slot" data-slot="2">
+        <span class="slot-num">3</span>
+        <span class="slot-icon">💥</span>
+        <span id="shotgun-ammo" class="slot-ammo">5</span>
+      </div>
+      <div class="slot" data-slot="3">
+        <span class="slot-num">4</span>
+        <span class="slot-icon">🧪</span>
+        <span id="shield-count" class="slot-ammo">2</span>
+      </div>
+      <div class="slot" data-slot="4">
+        <span class="slot-num">5</span>
+        <span class="slot-icon">🩹</span>
+        <span id="medkit-count" class="slot-ammo">1</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Start Menu Modal -->
+  <div id="menu-overlay">
+    <div class="menu-card">
+      <div class="menu-eyebrow">FORTNITE ZERO-BUILD STYLE</div>
+      <h1 class="menu-title">BATTLE <span>ROYALE</span></h1>
+      <p class="menu-desc">
+        Drop from the sky into the island arena. Scavenge golden chests for weapons and shields, survive the deadly closing storm, and eliminate 9 opponent bots to claim the #1 Victory Royale!
+      </p>
+
+      <div class="menu-controls">
+        <div><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> <span>Move</span></div>
+        <div><kbd>MOUSE</kbd> <span>Look & Aim</span></div>
+        <div><kbd>L-CLICK</kbd> <span>Shoot / Attack</span></div>
+        <div><kbd>SPACE</kbd> <span>Jump / Glider</span></div>
+        <div><kbd>SHIFT</kbd> <span>Sprint</span></div>
+        <div><kbd>1 - 5</kbd> <span>Select Weapon</span></div>
+        <div><kbd>E</kbd> <span>Open Chest / Loot</span></div>
+      </div>
+
+      <button id="btn-play" class="btn-primary">DROP IN ↗</button>
+      <div id="menu-status">Ready for drop-off · Headphones recommended</div>
+    </div>
+  </div>
+
+  <!-- End Game Screens: Victory & Defeat -->
+  <div id="victory-screen" class="end-screen">
+    <div class="victory-banner">
+      <div class="victory-tag">#1</div>
+      <div class="victory-text">VICTORY ROYALE</div>
+      <div class="victory-sub" id="victory-stats">ELIMINATIONS: 4</div>
+      <button id="btn-play-again" class="btn-primary">PLAY AGAIN ↗</button>
+    </div>
+  </div>
+
+  <div id="gameover-screen" class="end-screen">
+    <div class="defeat-banner">
+      <div class="defeat-tag" id="defeat-placement">#4 PLACE</div>
+      <div class="defeat-text">ELIMINATED</div>
+      <div class="defeat-sub" id="defeat-stats">ELIMINATIONS: 1</div>
+      <button id="btn-retry" class="btn-primary">PLAY AGAIN ↗</button>
+    </div>
+  </div>
+</body>
+</html>

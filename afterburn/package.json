@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "@dimforge/rapier3d-compat": "^0.20.0",
+    "esbuild": "^0.28.2",
+    "three": "^0.186.0"
+  },
+  "name": "afterburn-coastal-canyon",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "esbuild main.js --bundle --format=iife --outfile=bundle.js --minify",
+    "test": "node flight.test.mjs && node targeting.test.mjs && node smoke.test.mjs",
+    "start": "node server.mjs",
+    "build:drift": "esbuild drift.js --bundle --format=iife --loader:.png=dataurl --outfile=drift.bundle.js --minify",
+    "test:drift": "node drift.test.mjs"
+  }
+}

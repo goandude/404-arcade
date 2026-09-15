@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Local dev-only transcription tooling / model cache (not game dependencies)
+.audio-tools/
+.audio-models/
+
+# Build scratch
+afterburn/.smoke-main.mjs
+
+# Large source media kept out of git (exceeds GitHub's 100 MB file limit)
+background song/

@@ -1,0 +1,41 @@
+import assert from 'node:assert/strict';
+import {driftForce,pursuitPose} from './drift-flight.js';
+function simulate(boost, input, velocity, seconds){
+ const v={...velocity},dt=1/120;
+ for(let t=0;t<seconds;t+=dt){const f=driftForce(v,input,boost);for(const axis of ['x','y','z'])v[axis]+=f[axis]*dt;}
+ return v;
+}
+const cruise=simulate(false,{x:0,y:0},{x:0,y:0,z:-155},30);
+assert.ok(-cruise.z>150&&-cruise.z<160);
+const boosted=simulate(true,{x:0,y:0},cruise,4);
+assert.ok(-boosted.z>200);
+const turned=simulate(false,{x:1,y:1},cruise,2);
+assert.ok(turned.x>30&&turned.y>25);
+const recovered=simulate(false,{x:0,y:0},turned,4);
+assert.ok(Math.abs(recovered.x)<.1&&Math.abs(recovered.y)<.1);
+const pose=pursuitPose({x:10,y:20,z:-500},cruise,false);
+assert.ok(pose.camera.z>-500&&pose.camera.y>20&&pose.target.z<-500);
+console.log('Nebula Drift: cruise, boost, steering recovery, and chase-camera checks passed.');
+const T=await import('three');
+const {createMission,segmentHits}=await import('./drift-mission.js');
+assert.ok(segmentHits(new T.Vector3(0,0,-100),new T.Vector3(0,0,100),new T.Vector3(),3));
+assert.ok(!segmentHits(new T.Vector3(10,0,-100),new T.Vector3(10,0,100),new T.Vector3(),3));
+let completed=0;const scene=new T.Scene(),camera=new T.PerspectiveCamera(64,1,.1,7000);
+camera.position.set(0,7,22);camera.lookAt(0,0,-100);camera.updateMatrixWorld();
+const mission=createMission(scene,{message:()=>{},tone:()=>{},damage:()=>{},destroyRock:()=>{},complete:()=>completed++});
+const args={pos:new T.Vector3(),camera,aim:new T.Vector2(),rocks:[],firing:true,distance:1200};
+mission.update(1/120,args);assert.equal(mission.status.enemies,5);
+for(let i=0;i<360;i++)mission.update(1/120,args);
+assert.ok(mission.status.heat>0&&mission.status.heat<=100);
+mission.update(1/120,{...args,distance:4300});assert.equal(mission.status.wave,2);
+mission.update(1/120,{...args,distance:8200});assert.equal(mission.status.wave,3);
+mission.update(1/120,{...args,distance:12000});mission.update(1/120,{...args,distance:13000});assert.equal(completed,1);
+mission.reset();assert.equal(mission.status.enemies,0);assert.equal(mission.status.heat,0);assert.equal(mission.status.wave,0);
+console.log('Mission: swept collision, encounter stages, cannon heat, delivery, and restart checks passed.');
+let destroyed=0;const firingScene=new T.Scene();
+const shooting=createMission(firingScene,{message:()=>{},tone:()=>{},damage:()=>{},destroyRock:()=>destroyed++,complete:()=>{}});
+const ray=new T.Raycaster();ray.setFromCamera(new T.Vector2(),camera);
+const rock={mesh:{position:ray.ray.at(100,new T.Vector3())},radius:8};
+shooting.update(1/120,{...args,distance:0,rocks:[rock]});assert.equal(destroyed,1,'laser hits the rock under the camera aim ray');
+shooting.reset();shooting.update(1/120,{...args,distance:0,aim:new T.Vector2(.9,.9),rocks:[rock]});assert.equal(destroyed,1,'off-target laser misses');
+console.log('Aim: on-target hit and off-target miss passed.');
