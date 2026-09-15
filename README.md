@@ -17,7 +17,7 @@ Open `arcade.html` to browse the arcade, or open any game's HTML file directly.
 | **Coastal Cruise** | `racer.html`, `racer.js`, `racer.css`, `arcade.css` | Top-down retro racer. Dodge cars, cones, barriers, and oil slicks. |
 | **Sssite Not Found** | `snake.html`, `arcade.js`, `arcade.css` | Classic snake. Standalone — not linked from the arcade menu, which lists Coastal Cruise in its place. |
 
-The five games linked from `arcade.html` are Void Explorer, Invaders, BreakOut, Flappy Byte, and Coastal Cruise. Snake still works and is kept for anyone who wants it, but it was replaced in the menu.
+The five games linked from `arcade.html`, in menu order, are Coastal Cruise, 404 Invaders, The Void Explorer, BreakOut of Cache, and Flappy Byte. Snake still works and is kept for anyone who wants it, but it was replaced in the menu.
 
 ### Shared behaviour
 
