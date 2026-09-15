@@ -4,7 +4,7 @@ A collection of browser games built around a 404 page. Nothing to install and no
 
 **Play online:** https://goandude.github.io/404-arcade/arcade.html
 
-Open `arcade.html` to browse the arcade, or open any game's HTML file directly.
+Open `arcade.html` to browse the arcade, or open any game's HTML file directly. The landing page needs `home.css` and `home.js` alongside it; the games themselves do not use either.
 
 ## The games
 
