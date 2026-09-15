@@ -1,4 +1,4 @@
-﻿# Battle Royale — Zero Build 3D Shooter
+# Battle Royale — Zero Build 3D Shooter
 
 A lightweight, fast-loading 3D third-person battle royale shooter built with Three.js and Rapier physics (WASM).
 
@@ -22,3 +22,5 @@ A lightweight, fast-loading 3D third-person battle royale shooter built with Thr
 
 ## Running Locally
 Run `npm start` in this folder and open http://127.0.0.1:4174 in your browser.
+
+Dependencies live in `../afterburn/node_modules`, reached through a `node_modules` symlink that a fresh clone will not have. Run `npm install` in `../afterburn` first if `npm start`, `npm test`, or `npm run build` cannot resolve Three.js or Rapier. Playing the prebuilt `bundle.js` needs no install.

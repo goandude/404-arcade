@@ -1,70 +1,65 @@
-# The Void Explorer â€” endless 404 platformer
+# 404 Arcade
 
+A collection of browser games built around a 404 page. Nothing to install and nothing to build — the 2D games are plain HTML, CSS, and Canvas, and the 3D prototypes ship with prebuilt bundles.
 
+**Play online:** https://goandude.github.io/404-arcade/arcade.html
 
-Open `void-explorer.html` in a browser. No installation or build required.
+Open `arcade.html` to browse the arcade, or open any game's HTML file directly.
 
+## The games
 
+| Game | Files | What it is |
+| --- | --- | --- |
+| **The Void Explorer** | `void-explorer.html`, `game.js`, `style.css` | Endless lunar platformer. Run right forever across generated terrain. |
+| **404 Invaders** | `invaders.html`, `invaders.js`, `invaders.css`, `invaders-music.js`, `invaders-theme.mp3` | Five waves of alien glitches, with a timed lyric ticker. |
+| **BreakOut of Cache** | `breakout.html`, `arcade.js`, `arcade.css` | Three brick layouts, starting with a 404 made of bricks. |
+| **Flappy Byte / Cosmic Courier** | `flappy.html`, `arcade.js`, `arcade.css`, `cosmic.js` | Fly a mail ship through crystal asteroids and collect lost envelopes. |
+| **Coastal Cruise** | `racer.html`, `racer.js`, `racer.css`, `arcade.css` | Top-down retro racer. Dodge cars, cones, barriers, and oil slicks. |
+| **Sssite Not Found** | `snake.html`, `arcade.js`, `arcade.css` | Classic snake. Standalone — not linked from the arcade menu, which lists Coastal Cruise in its place. |
 
-## Goal
+The five games linked from `arcade.html` are Void Explorer, Invaders, BreakOut, Flappy Byte, and Coastal Cruise. Snake still works and is kept for anyone who wants it, but it was replaced in the menu.
 
-Travel as far right as possible before losing all three lives. New terrain, gaps, spikes, aliens, and coins are generated ahead. There is no finish line.
+### Shared behaviour
 
+Every game has generated sound with a saved mute preference, locally saved best scores, and automatic pause when the window loses focus. `Enter` starts or retries and `P` pauses or resumes. Touch controls are included throughout. Everything runs offline; Google Fonts are optional, with system fallbacks.
 
+### Controls
 
-- A/D or left/right arrows: move.
+- **Void Explorer** — A/D or arrows move. W, up, or Space jumps; land on aliens to stomp them. Space or tap restarts after game over. Coins award 35 points, stomps 100, and each new 100 metres 100. Distance measures furthest progress, so backtracking earns nothing. Falling costs a life and returns you to the last ground platform reached. Three lives.
+- **404 Invaders** — A/D or arrows move; hold Space to fire. Beat five levels before the aliens reach your ship. Each level raises invader speed, bullet speed, and firing rate. Glitches award 10–30 points, clearing a level 100. Three lives.
+- **BreakOut of Cache** — Arrows/A/D or pointer move the paddle; Space or tap launches. Three lives.
+- **Flappy Byte** — Space, up, or tap flaps. Envelopes award 5 points, gaps 1. Difficulty follows gaps passed, not bonus points.
+- **Coastal Cruise** — Arrows/A/D steer; hold Space to boost and release to recharge. Three lanes, with solid obstacles costing a life and oil slicks cutting steering grip for 1.3 seconds. Brief protection after an impact. Best distance is saved.
+- **Sssite Not Found** — Arrows/WASD or touch buttons steer. Bytes award 10 points; speed increases as you grow. Walls and your own trail end the run.
 
-- W, up arrow, or Space: jump. Land on aliens to stomp them.
+### Invaders music
 
-- P: pause or resume. Switching windows pauses; tap the canvas to resume.
+`invaders-music.js` uses locally extracted vocal-line timestamps for `invaders-theme.mp3` (113.2 seconds). The timings are approximate, not word-level karaoke alignment — the board shows detected verse and chorus lines, and the complete supplied text stays in **Read lyrics**. Deploy the music script and the MP3 alongside Invaders.
 
-- Space or tap the canvas: restart after game over.
+## 3D prototypes
 
-- On-screen movement and jump buttons support touch devices.
+These are separate Three.js + Rapier projects with their own `package.json`, and they are not linked from the arcade menu.
 
+### `afterburn/` — Afterburn: Coastal Canyon
 
+A first-person flight and combat prototype, plus **Razorwing Pursuit** (`drift.html`), a third-person dogfight. Both ship with prebuilt bundles that embed Three.js and Rapier's WebAssembly, so `index.html` and `drift.html` open straight from disk. See [`afterburn/README.md`](afterburn/README.md) for controls, build commands, and the local server.
 
-Coins award 35 points, stomping aliens awards 100, and each new 100 metres awards 100. Distance measures your furthest progress, so backtracking does not earn distance bonuses. Falling costs a life and returns you to the last ground platform reached. The best score and sound preference are saved when browser storage is available.
+### `Battle Royale/` — Zero Build 3D Shooter
 
+A third-person battle royale with a glider drop-in, nine AI bots, chest loot, and a shrinking storm. See [`Battle Royale/README.md`](Battle%20Royale/README.md).
 
+### Running the 3D projects from a clone
 
-## Hosting
+Dependencies are installed once in `afterburn/`, and `Battle Royale/node_modules` is a symlink to it that does not survive a clone. To rebuild or run the test suites:
 
-Copy `void-explorer.html`, `style.css`, and `game.js` into your site. Configure your server to serve this page for missing URLs while preserving HTTP status 404. Use absolute stylesheet/script URLs matching their deployed location when handling nested missing URLs. Set the home link to your homepage. Change the page title and story text for other error types.
+```sh
+cd afterburn && npm install
+```
 
+Then, from either folder, `npm start` serves the game and `npm test` runs its checks. Playing the prebuilt bundles needs no install at all.
 
+## Hosting as a real 404 page
 
-Google Fonts are optional; fallback fonts work offline. The game uses Canvas and Web Audio without external game libraries.
+Copy a game's files into your site and configure your server to serve that page for missing URLs **while preserving HTTP status 404**. Use absolute stylesheet and script URLs matching their deployed location so nested missing URLs still resolve. Point the home link at your homepage, and change the page title and story text for other error types.
 
-
-
-## 404 Invaders
-
-
-
-Open `invaders.html` for the separate arcade shooter. A/D or arrow keys move; hold Space to fire; Enter starts or retries; P pauses. Touch controls are included. Beat five levels before the aliens reach your ship, surviving with three lives. Each level increases invader speed, enemy bullet speed, and firing frequency. Clearing level five wins the game. Glitches award 10–30 points and clearing a level awards 100. Best scores are saved locally. Deploy `invaders.html`, `invaders.css`, and `invaders.js` together to use this variant.
-
-
-
-## New arcade games
-
-Open `arcade.html` to browse all five games. The new games share `arcade.css` and `arcade.js`; keep both alongside their HTML files:
-
-- `breakout.html` — BreakOut of Cache: clear three layouts, starting with 404 bricks. Move with arrows/A/D or pointer/touch; Space or tap launches. Three lives.
-- `flappy.html` — Flappy Byte: Space, up arrow, or tap flaps through firewall gaps. Each gap earns one point; collision ends the run.
-- `snake.html` — Sssite Not Found: arrows/WASD or touch direction buttons steer. Collect bytes for ten points; speed increases as you grow. Walls and your trail end the run.
-
-Enter starts or retries; P pauses/resumes. All three include generated sound, a saved mute preference, local best scores, and automatic pause when the window loses focus. Gameplay works offline; Google Fonts are optional with system fallbacks. The running/platforming role remains covered by The Void Explorer.
-
-Invaders timed lyrics: `invaders-music.js` uses locally extracted vocal-line timestamps for `invaders-theme.mp3` (113.2 seconds). Timings are approximate, not word-level karaoke alignment. The board shows detected verse/chorus lines; the complete supplied text remains in Read lyrics. Deploy the music script and MP3 with Invaders. `.audio-tools` and `.audio-models` are development-only transcription downloads, not game dependencies, and must not be deployed.
-
-### Cosmic Courier redesign
-`flappy.html` also requires `cosmic.js` for its locally drawn planets, mail ship, and crystal asteroids. Collect envelopes for 5 points and pass gaps for 1 point. Difficulty follows gaps passed, not bonus points. Keep `cosmic.js` alongside `arcade.js` and `arcade.css` when deploying Flappy Byte.
-
-## Coastal Cruise
-The arcade menu now replaces Snake with `racer.html`. Deploy it with `racer.js`, `racer.css`, and the shared `arcade.css`. Arrows/A/D steer; hold Space for boost and release to recharge. Enter starts/retries; P pauses. Three lives, traffic and road-edge collisions, brief impact protection, engine audio, touch buttons, and locally saved best distance. The original Snake files remain available separately.
-
-Coastal Cruise now uses a top-down 2D retro view with three lanes, scrolling road markings, pixel cars, cones, barriers, and oil slicks. Solid obstacles cost a life; oil slows the car and reduces steering grip for 1.3 seconds. Space boost, touch steering, pause, and best-distance saving are retained.
-
-## Standalone flight prototype
-`afterburn/index.html` launches Afterburn: Coastal Canyon, a separate Three.js/Rapier first-person jet game. See `afterburn/README.md` for controls, practice mode, build and local server instructions.
+`.audio-tools/` and `.audio-models/` are development-only transcription downloads, not game dependencies, and must not be deployed. They are excluded from this repository, as is the source video under `background song/`.
