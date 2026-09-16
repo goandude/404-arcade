@@ -58,6 +58,25 @@ cd afterburn && npm install
 
 Then, from either folder, `npm start` serves the game and `npm test` runs its checks. Playing the prebuilt bundles needs no install at all.
 
+## Putting a game on your own 404 page
+
+The quickest route is an iframe — one line, no files to copy:
+
+```html
+<iframe src="https://goandude.github.io/404-arcade/invaders.html?embed=1"
+        title="404 Invaders"
+        style="width:100%;aspect-ratio:5/4;border:0;display:block;margin:0 auto"
+        loading="lazy"></iframe>
+```
+
+The embed picker at the bottom of [`arcade.html`](https://goandude.github.io/404-arcade/arcade.html) builds this for you with a copy button.
+
+`?embed=1` puts any game page into embed mode: `embed.css` hides the site header, footer, titles and navigation, and the game stretches to fill the frame — the HUD and control bar keep their height, the play area takes the rest, and the canvas letterboxes with `object-fit`. Any aspect ratio works; the ratios the picker suggests are only tidy defaults. Add `&credit=1` for a small "More games" link in the corner, which is off by default.
+
+Embedding sidesteps the relative-path problem described below, because the game's assets resolve against this origin rather than against the depth of the missing URL. Your server keeps returning its own 404 status — an iframe does not change it, which a redirect or meta refresh would. If your site sets a Content Security Policy, add the origin to `frame-src`.
+
+To self-host instead, copy the game's files into your site and point the snippet at your own copy.
+
 ## Hosting as a real 404 page
 
 Copy a game's files into your site and configure your server to serve that page for missing URLs **while preserving HTTP status 404**. Use absolute stylesheet and script URLs matching their deployed location so nested missing URLs still resolve. Point the home link at your homepage, and change the page title and story text for other error types.

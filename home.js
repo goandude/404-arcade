@@ -75,6 +75,63 @@
     setTimeout(() => { window.location.href = pick.href; }, 450);
   });
 
+  // ---- Embed snippet generator ------------------------------------------
+  // The snippet points at wherever this page is actually served from, so a
+  // fork or a self-hosted copy produces a snippet for its own origin rather
+  // than hard-coding the original one.
+  const gameSel = $('embed-game');
+  const widthSel = $('embed-width');
+  const codeEl = $('embed-code');
+  const copyBtn = $('embed-copy');
+
+  function snippet() {
+    const opt = gameSel.options[gameSel.selectedIndex];
+    const url = new URL(opt.value + '?embed=1', location.href).href;
+    const width = widthSel.value;
+    const title = opt.dataset.title;
+    return `<iframe src="${url}"\n        title="${title}"\n        style="width:${width};aspect-ratio:${opt.dataset.ratio};border:0;display:block;margin:0 auto"\n        loading="lazy"></iframe>`;
+  }
+
+  function paintSnippet() { codeEl.textContent = snippet(); }
+
+  gameSel.addEventListener('change', paintSnippet);
+  widthSel.addEventListener('change', paintSnippet);
+  paintSnippet();
+
+  const copyLabel = $('embed-copy-label');
+  let copyReset = null;
+  copyBtn.addEventListener('click', async () => {
+    const text = snippet();
+    let ok = false;
+    try {
+      await navigator.clipboard.writeText(text);
+      ok = true;
+    } catch (_) {
+      // Clipboard API needs a secure context; fall back to a scratch
+      // textarea so the button still works over plain http.
+      try {
+        const scratch = document.createElement('textarea');
+        scratch.value = text;
+        scratch.setAttribute('readonly', '');
+        scratch.style.cssText = 'position:fixed;top:-1000px;opacity:0';
+        document.body.appendChild(scratch);
+        scratch.select();
+        ok = document.execCommand('copy');
+        scratch.remove();
+      } catch (_) { ok = false; }
+    }
+    copyLabel.textContent = ok ? 'Copied' : 'Press Ctrl+C to copy';
+    if (!ok) {
+      const range = document.createRange();
+      range.selectNodeContents(codeEl);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }
+    clearTimeout(copyReset);
+    copyReset = setTimeout(() => { copyLabel.textContent = 'Copy snippet'; }, 2000);
+  });
+
   // ---- Animated backdrop ------------------------------------------------
   // A retro grid-and-starfield shader. Entirely optional: if WebGL is
   // missing, the shader fails to compile, or the visitor asked for reduced

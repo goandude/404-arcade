@@ -368,6 +368,60 @@
     </div>
   </section>
 
+  <section class="embed-kit" aria-labelledby="embed-title">
+    <div class="head">
+      <div class="title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="color:var(--primary)"><path d="M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4Zm5.2 0 4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4Z"/></svg>
+        <h2 id="embed-title">Put a game on your 404</h2>
+      </div>
+      <span class="note">One line</span>
+    </div>
+
+    <p class="embed-intro">Pick a game, copy the snippet, paste it into your error page. Nothing to download and no files to host — the game loads from here, so it keeps working however deep the missing URL is. Your server keeps returning its own 404 status; an iframe does not change it.</p>
+
+    <div class="embed-controls">
+      <label>
+        <span class="label">Game</span>
+        <select id="embed-game">
+          <option value="racer.html" data-ratio="1/1" data-title="Coastal Cruise">Coastal Cruise</option>
+          <option value="invaders.html" data-ratio="5/4" data-title="404 Invaders" selected>404 Invaders</option>
+          <option value="void-explorer.html" data-ratio="3/2" data-title="The Void Explorer">The Void Explorer</option>
+          <option value="breakout.html" data-ratio="4/3" data-title="BreakOut of Cache">BreakOut of Cache</option>
+          <option value="flappy.html" data-ratio="4/3" data-title="Flappy Byte">Flappy Byte</option>
+          <option value="snake.html" data-ratio="4/3" data-title="Sssite Not Found">Sssite Not Found</option>
+        </select>
+      </label>
+      <label>
+        <span class="label">Width</span>
+        <select id="embed-width">
+          <option value="100%" selected>Full width</option>
+          <option value="720px">720 px</option>
+          <option value="560px">560 px</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="embed-snippet">
+      <pre><code id="embed-code"></code></pre>
+      <button class="btn btn-primary" id="embed-copy" type="button">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1Zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm0 16H8V7h11v14Z"/></svg>
+        <span id="embed-copy-label">Copy snippet</span>
+      </button>
+    </div>
+
+    <details class="embed-notes">
+      <summary>Notes for your setup</summary>
+      <ul>
+        <li><strong>Keep the 404 status.</strong> Serve your error page with HTTP 404 as you do now. Do not swap it for a redirect or a meta refresh — those turn the 404 into a 302 or 200 and confuse crawlers.</li>
+        <li><strong>Content Security Policy.</strong> If your site sets one, add <code>https://goandude.github.io</code> to <code>frame-src</code>.</li>
+        <li><strong>Offline or air-gapped sites.</strong> The snippet loads from this origin, so it needs the visitor to reach it. To self-host instead, copy the game's files out of <a href="https://github.com/goandude/404-arcade">the repo</a> and point the snippet at your own copy.</li>
+        <li><strong>Any size works.</strong> The <code>aspect-ratio</code> above is just a tidy default — the game fits whatever box you give it, letterboxing rather than cropping, so change it freely.</li>
+        <li><strong>Want a link back?</strong> Add <code>&amp;credit=1</code> to the URL for a small "More games" link in the corner. It is off by default so the embed adds nothing to your page you did not ask for.</li>
+        <li><strong>Scores</strong> save to your visitor's browser, scoped to your site. Nothing is sent anywhere.</li>
+      </ul>
+    </details>
+  </section>
+
   <div class="eject">
     <div class="row">
       <a class="btn btn-secondary" href="/">
