@@ -162,7 +162,9 @@ float hash(vec2 p){
 void main(){
   vec2 st = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / min(u_resolution.x, u_resolution.y);
   float t = u_time * 0.4;
-  vec3 color = vec3(0.027, 0.043, 0.08);
+  // Base tone tracks --surface in home.css so the shader and the plain
+  // CSS fallback sit at the same lightness.
+  vec3 color = vec3(0.102, 0.133, 0.212);
 
   vec2 p = st;
   p.y += 0.35;
